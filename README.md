@@ -67,7 +67,7 @@ In real data the confidence matrix will show relationships most likely in cluste
 ![](./img/confidence_matrix.png)
 
 
-The lift relationship shall follow similar patter.
+The lift relationship shall follow similar pattern.
 
 ![](./img/lift_matrix.png)
 
