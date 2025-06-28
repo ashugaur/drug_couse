@@ -72,7 +72,7 @@ The lift relationship shall follow similar patter.
 ![](./img/lift_matrix.png)
 
 
-**Simulated data log output**
+#### Simulated data log
 
 ```py
 🚀 Creating Complete Drug Relationships Matrix:
