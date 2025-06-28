@@ -99,6 +99,6 @@ print("=" * 60)
 
 ## Self run
 """
-cd test
-uv run .\arm_v2_test.py
+cd .\tests\
+uv run .\arm_test.py
 """
