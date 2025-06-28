@@ -1,0 +1,30 @@
+[project]
+name = "drug_couse"
+version = "0.1.0"
+description = "Drugs co-prescribed"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "fastparquet>=2024.11.0",
+    "matplotlib>=3.10.3",
+    "mlxtend>=0.23.4",
+    "openpyxl>=3.1.5",
+    "pandas>=2.3.0",
+]
+authors = [
+    {name = "AshutoshGaur", email = "ashutoshgaur@live.com"},
+]
+keywords = ["Associated rule mining"]
+
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools]
+include-package-data = true
+
+[tool.pytest.ini_options]
+pythonpath = "src"
