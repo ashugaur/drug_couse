@@ -1,4 +1,4 @@
-# %% patient_likelihood_of_taking_drug_pandas
+# %% Patient likelihood of taking drug
 
 ## Dependencies
 import pandas as pd
@@ -85,7 +85,7 @@ def simulated_patient_drug_combination(num_records):
 
 
 # Example usage
-if __name__ == '__main__':
+if __name__ == "__main__":
     df = simulated_patient_drug_combination(1000)
     print(df)
     # df.to_clipboard(index=False)
@@ -250,7 +250,7 @@ class DrugAssociationAnalyzer:
             print("❌ No rules available for creating relationship table")
             return None
 
-        print(f"📋 Creating comprehensive relationship table...")
+        print("📋 Creating comprehensive relationship table...")
         print(
             f"   Filters: Confidence≥{min_confidence}, Support≥{min_support}, Lift≥{min_lift}"
         )
@@ -401,7 +401,7 @@ class DrugAssociationAnalyzer:
                     print(
                         f"⚠️  Main data ({len(comprehensive_df):,} rows) exceeds Excel limit"
                     )
-                    print(f"   📝 Added notice in Excel sheet pointing to parquet file")
+                    print("   📝 Added notice in Excel sheet pointing to parquet file")
                 else:
                     # Normal case - write all data to Excel
                     comprehensive_df.to_excel(
@@ -486,9 +486,9 @@ class DrugAssociationAnalyzer:
 
             print(f"✅ Exported comprehensive relationship table to: {filename}")
             print(
-                f"   📊 Excel sheets created: All_Relationships, High_Priority, Strong_Rules, Top_Confidence, Summary_Stats"
+                "   📊 Excel sheets created: All_Relationships, High_Priority, Strong_Rules, Top_Confidence, Summary_Stats"
             )
-            print(f"   📁 Parquet files created:")
+            print("   📁 Parquet files created:")
             print(f"      • {parquet_filename}: Complete dataset")
             print(
                 f"      • {filename.replace('.xlsx', '_high_priority.parquet')}: High priority relationships"
@@ -724,7 +724,7 @@ class DrugAssociationAnalyzer:
                     print(
                         f"⚠️  Main data ({len(all_pairs_df):,} rows) exceeds Excel limit"
                     )
-                    print(f"   📝 Added notice in Excel sheet pointing to parquet file")
+                    print("   📝 Added notice in Excel sheet pointing to parquet file")
                 else:
                     # Normal case - write all data to Excel
                     all_pairs_df.to_excel(
@@ -837,38 +837,38 @@ class DrugAssociationAnalyzer:
                     filename.replace(".xlsx", "_top_relationships.parquet"), index=False
                 )
 
-            print(f"✅ Exported comprehensive drug pairs analysis to: {filename}")
-            print(f"   📊 Excel sheets created:")
+            print("✅ Exported comprehensive drug pairs analysis to: {filename}")
+            print("   📊 Excel sheets created:")
             if main_data_oversized:
-                print(f"      • All_Drug_Pairs: Notice + sample (full data in parquet)")
+                print("      • All_Drug_Pairs: Notice + sample (full data in parquet)")
             else:
-                print(f"      • All_Drug_Pairs: Complete relationship matrix")
-            print(f"      • High_Confidence_60+: Relationships with 60%+ confidence")
-            print(f"      • Strong_Association_Lift2+: Relationships with lift ≥ 2.0")
+                print("      • All_Drug_Pairs: Complete relationship matrix")
+            print("      • High_Confidence_60+: Relationships with 60%+ confidence")
+            print("      • Strong_Association_Lift2+: Relationships with lift ≥ 2.0")
             print(
-                f"      • High_Clinical_Priority: Most clinically relevant relationships"
+                "      • High_Clinical_Priority: Most clinically relevant relationships"
             )
-            print(f"      • Confidence_Matrix: Pivot table of confidence scores")
-            print(f"      • Lift_Matrix: Pivot table of lift scores")
-            print(f"      • Drug_Summary: Summary statistics per drug")
-            print(f"      • Top_Relations_Per_Drug: Best relationships for each drug")
+            print("      • Confidence_Matrix: Pivot table of confidence scores")
+            print("      • Lift_Matrix: Pivot table of lift scores")
+            print("      • Drug_Summary: Summary statistics per drug")
+            print("      • Top_Relations_Per_Drug: Best relationships for each drug")
 
-            print(f"\n   📁 Parquet files created:")
-            print(f"      • {parquet_filename}: Complete dataset")
+            print("\n   📁 Parquet files created:")
+            print("      • {parquet_filename}: Complete dataset")
             print(
-                f"      • {filename.replace('.xlsx', '_high_confidence.parquet')}: High confidence relationships"
+                "      • {filename.replace('.xlsx', '_high_confidence.parquet')}: High confidence relationships"
             )
             print(
-                f"      • {filename.replace('.xlsx', '_strong_lift.parquet')}: Strong lift relationships"
+                "      • {filename.replace('.xlsx', '_strong_lift.parquet')}: Strong lift relationships"
             )
             print(
-                f"      • {filename.replace('.xlsx', '_high_priority.parquet')}: High priority relationships"
+                "      • {filename.replace('.xlsx', '_high_priority.parquet')}: High priority relationships"
             )
             print(
-                f"      • {filename.replace('.xlsx', '_drug_summary.parquet')}: Drug summary"
+                "      • {filename.replace('.xlsx', '_drug_summary.parquet')}: Drug summary"
             )
             print(
-                f"      • {filename.replace('.xlsx', '_top_relationships.parquet')}: Top relationships per drug"
+                "      • {filename.replace('.xlsx', '_top_relationships.parquet')}: Top relationships per drug"
             )
 
         except Exception as e:
@@ -1009,21 +1009,40 @@ def compare_file_sizes(base_filename):
 
 # %% Extended example usage for comprehensive table
 
-if __name__ == '__main__':
-
-    # Initialize analyzer
-    analyzer = DrugAssociationAnalyzer(df)
-
-    # Automatically analyze ALL drug pairs with enhanced export
+if __name__ == "__main__":
+    ## Automatically analyze ALL drug pairs with enhanced export
     print("\n🚀 Creating Complete Drug Relationships Matrix:")
     print("=" * 60)
+
+    ## Initialize analyzer
+    analyzer = DrugAssociationAnalyzer(df)
+
+    # Step 1: Preprocess data
+    transactions = analyzer.preprocess_data()
+    print("\n📋 Transaction Matrix Shape: {transactions.shape}")
+    print("Sample of transaction matrix:")
+    print(transactions.head())
+
+    # Step 2: Get basic statistics
+    analyzer.get_drug_statistics()
+
+    # Step 3: Find frequent itemsets
+    # Start with low min_support since we have small dataset
+    frequent_itemsets = analyzer.find_frequent_itemsets(min_support=0.2)
+
+    if frequent_itemsets is not None:
+        print("\n📊 Top 10 Frequent Itemsets:")
+        print(frequent_itemsets.nlargest(10, "support"))
+
+    # Step 4: Generate association rules
+    rules = analyzer.generate_association_rules(metric="confidence", min_threshold=0.5)
 
     all_pairs_matrix = analyzer.create_all_pairs_relationship_matrix(
         export_to_excel=True, filename="complete_drug_relationships_matrix.xlsx"
     )
 
     if all_pairs_matrix is not None:
-        print(f"\n📈 Complete Analysis Summary:")
+        print("\n📈 Complete Analysis Summary:")
         print(f"   Total drug pairs analyzed: {len(all_pairs_matrix):,}")
         print(
             f"   High confidence relationships (60%+): {len(all_pairs_matrix[all_pairs_matrix['Confidence'] >= 0.6]):,}"
@@ -1038,21 +1057,21 @@ if __name__ == '__main__':
         # Compare file sizes for the complete matrix
         compare_file_sizes("complete_drug_relationships_matrix")
 
-        print(f"\n📁 Output Files Generated:")
-        print(f"   📊 Excel File: complete_drug_relationships_matrix.xlsx")
-        print(f"      • Multiple sheets with filtered views")
-        print(f"      • Pivot tables for easy analysis")
-        print(f"      • Summary statistics")
-        print(f"   📦 Parquet Files: Multiple .parquet files for different views")
-        print(f"      • Faster loading for large datasets")
-        print(f"      • Better compression than CSV")
-        print(f"      • Preserves data types")
+        print("\n📁 Output Files Generated:")
+        print("   📊 Excel File: complete_drug_relationships_matrix.xlsx")
+        print("      • Multiple sheets with filtered views")
+        print("      • Pivot tables for easy analysis")
+        print("      • Summary statistics")
+        print("   📦 Parquet Files: Multiple .parquet files for different views")
+        print("      • Faster loading for large datasets")
+        print("      • Better compression than CSV")
+        print("      • Preserves data types")
 
     # Demonstration of loading parquet data
-    print(f"\n🔄 Demonstration: Loading Parquet Data")
+    print("\n🔄 Demonstration: Loading Parquet Data")
     sample_parquet = load_parquet_data("complete_drug_relationships_matrix.parquet")
     if sample_parquet is not None:
-        print(f"   Sample of loaded data:")
+        print("   Sample of loaded data:")
         print(
             f"   {sample_parquet.head(3)[['Drug_A', 'Drug_B', 'Confidence_%', 'Lift', 'Rule_Strength']].to_string(index=False)}"
         )
@@ -1066,7 +1085,6 @@ if __name__ == '__main__':
     print("   ✅ File size comparisons")
     print("   ✅ Easy data loading utilities")
     print("=" * 60)
-
 
     """
     Excel output:

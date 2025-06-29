@@ -24,6 +24,7 @@ df.head()
 print("\n🚀 Creating Complete Drug Relationships Matrix:")
 print("=" * 60)
 
+
 ## Initialize analyzer
 analyzer = DrugAssociationAnalyzer(df)
 
@@ -51,6 +52,7 @@ all_pairs_matrix = analyzer.create_all_pairs_relationship_matrix(
     export_to_excel=True, filename="complete_drug_relationships_matrix.xlsx"
 )
 
+
 if all_pairs_matrix is not None:
     print("\n📈 Complete Analysis Summary:")
     print(f"   Total drug pairs analyzed: {len(all_pairs_matrix):,}")
@@ -77,7 +79,8 @@ if all_pairs_matrix is not None:
     print("      • Better compression than CSV")
     print("      • Preserves data types")
 
-# Demonstration of loading parquet data
+
+## Demonstration of loading parquet data
 print("\n🔄 Demonstration: Loading Parquet Data")
 sample_parquet = load_parquet_data("complete_drug_relationships_matrix.parquet")
 if sample_parquet is not None:
