@@ -3,6 +3,22 @@
 Method(s) to analyze patient drug couse.
 
 
+## Installation
+
+### Dependencies
+
+```
+uv pip install --system fastparquet matplotlib mlxtend openpyxl pandas
+or
+uv pip install --system --upgrade matplotlib pandas
+
+uv pip install --system -i https://test.pypi.org/simple/ drug-couse
+
+run examples\arm.py
+```
+
+
+
 ## Associated rule mining
 
 `Question`: Likelihood of a patient taking drug A also taking drug B?
@@ -58,7 +74,8 @@ ARM is an `Apriori Algorithm` similar to market basket analysis where you can id
 - Reasonable Support (>0.1): Patterns that affect a meaningful number of patients
 
 
-#### Output
+
+#### example\arm.py\ Output crosssection
 
 **Confidence Matrix**
 
@@ -72,7 +89,7 @@ The lift relationship shall follow similar pattern.
 ![](./img/lift_matrix.png)
 
 
-#### Simulated data log
+#### example\arm.py\ Log
 
 ```py
 🚀 Creating Complete Drug Relationships Matrix:
