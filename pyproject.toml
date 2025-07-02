@@ -5,6 +5,7 @@ description = "Analyze drug couse"
 readme = "README.md"
 requires-python = ">=3.11"
 dependencies = [
+    "build>=1.2.2.post1",
     "fastparquet>=2024.11.0",
     "matplotlib>=3.10.3",
     "mlxtend>=0.23.4",
@@ -15,7 +16,7 @@ dependencies = [
 authors = [
     {name = "AshutoshGaur", email = "ashutoshgaur@live.com"},
 ]
-keywords = ["Associated rule mining"]
+keywords = ["Associated rule mining", "Pharma analytics", "Patient analytics", "Drug couse"]
 
 [build-system]
 requires = ["setuptools>=61.0", "wheel"]
@@ -29,3 +30,7 @@ include-package-data = true
 
 [tool.pytest.ini_options]
 pythonpath = "src"
+
+[project.urls]
+homepage = "https://ashugaur.github.io/drug_couse/"
+repository = "https://github.com/ashugaur/drug_couse.git"

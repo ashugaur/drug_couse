@@ -1,5 +1,8 @@
 # Drug couse
 
+[TOC]
+
+
 Method(s) to analyze patient drug couse.
 
 
@@ -12,7 +15,7 @@ uv pip install --system fastparquet matplotlib mlxtend openpyxl pandas
 or
 uv pip install --system --upgrade matplotlib pandas
 
-uv pip install --system -i https://test.pypi.org/simple/ drug-couse
+https://test.pypi.org/project/drug-couse/
 
 run examples\arm.py
 ```
@@ -30,37 +33,39 @@ ARM is an `Apriori Algorithm` similar to market basket analysis where you can id
 
 #### Metrics
 
-1. `Support`
+1. **Support**
 
-    How frequently a particular combination of drugs occurs.
+    Relative fequency of a particular combination of drugs occuring.
 
     Support(A,B) = Count(A and B) / Total patients
 
     Support = 0.3 means 30% of patients take both drugs
 
 
-2. `Confidence`
+2. **Confidence**
 
-    Probability (likelihood) that Drug B is taken given Drug A is taken.
+    Probability that Drug B is taken given Drug A is taken.
 
     Confidence(A→B) = Count(A and B) / Count(A)
 
     Confidence = 0.8 means 80% of patients who take Drug A also take Drug B
 
+    Confidence is a measure of the reliability of the rule.
 
-3. `Lift`
+
+3. **Lift**
 
     Measures the deviation from independence. How much more likely Drug B is when Drug A is present vs. baseline (random chance).
 
     Lift(A→B) = Confidence(A→B) / Support(B)
 
-    Lift = 1: No association (random)<br>
+    Lift = 1: Completely independent or no association (random)<br>
     Lift > 1: Positive association (Drug A increases likelihood of Drug B)<br>
     Lift < 1: Negative association (Drug A decreases likelihood of Drug B)<br>
     Lift = 2.0: Patients taking Drug A are 2x more likely to take Drug B than average
 
 
-4. `Conviction`
+4. **Conviction**
 
     How much more often the rule would be incorrect if Drug A and Drug B were independent.
 
