@@ -2,6 +2,14 @@
 
 Method(s) to analyze patient drug couse.
 
+- [Drug couse](#drug-couse)
+  - [Installation](#installation)
+    - [Dependencies](#dependencies)
+  - [Associated rule mining](#associated-rule-mining)
+    - [1. Association Rule Mining (ARM)](#1-association-rule-mining-arm)
+      - [Metrics](#metrics)
+      - [example\\arm.py\\ Output crosssection](#examplearmpy-output-crosssection)
+      - [example\\arm.py\\ Log](#examplearmpy-log)
 
 ## Installation
 
