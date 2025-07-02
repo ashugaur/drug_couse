@@ -1,8 +1,5 @@
 # Drug couse
 
-[TOC]
-
-
 Method(s) to analyze patient drug couse.
 
 
