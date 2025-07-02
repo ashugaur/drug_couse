@@ -3,31 +3,34 @@
 Method(s) to analyze patient drug couse.
 
 - [Drug couse](#drug-couse)
-  - [Installation](#installation)
-    - [Dependencies](#dependencies)
-  - [Associated rule mining](#associated-rule-mining)
+  - [Dependencies](#dependencies)
+  - [Likelihood measure](#likelihood-measure)
     - [1. Association Rule Mining (ARM)](#1-association-rule-mining-arm)
       - [Metrics](#metrics)
       - [example\\arm.py\\ Output crosssection](#examplearmpy-output-crosssection)
       - [example\\arm.py\\ Log](#examplearmpy-log)
 
-## Installation
 
-### Dependencies
+## Dependencies
 
 ```
+pip install drug_couse
+```
+
+
+```
+https://pypi.org/project/drug_couse/
+
 uv pip install --system fastparquet matplotlib mlxtend openpyxl pandas
 or
 uv pip install --system --upgrade matplotlib pandas
-
-https://test.pypi.org/project/drug-couse/
 
 run examples\arm.py
 ```
 
 
 
-## Associated rule mining
+## Likelihood measure
 
 `Question`: Likelihood of a patient taking drug A also taking drug B?
 
