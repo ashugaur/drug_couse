@@ -5,6 +5,8 @@ import networkx as nx
 import matplotlib.pyplot as plt
 import numpy as np
 import seaborn as sns
+import plotly.graph_objects as go
+from math import pi, cos, sin
 
 # Your data
 data = {
@@ -138,13 +140,6 @@ plt.show()
 
 
 # %% v2
-
-import pandas as pd
-import networkx as nx
-import plotly.graph_objects as go
-import plotly.express as px
-import numpy as np
-from math import pi, cos, sin
 
 # Your data
 data = {
@@ -403,5 +398,5 @@ def create_interactive_network(threshold=0.02):
     """Function to create network with different threshold"""
     return fig  # You can call this function with different threshold values
 
-print(f"\nTo adjust the confidence threshold, change the 'confidence_threshold' variable at the top of the script.")
+print("\nTo adjust the confidence threshold, change the 'confidence_threshold' variable at the top of the script.")
 print(f"Current threshold: {confidence_threshold} (showing {len(edges_data)} edges)")
