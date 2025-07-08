@@ -430,7 +430,7 @@ df = pd.DataFrame(data)
 df = df.set_index('Drug_A')
 
 # Parameters for customization
-confidence_threshold = 0.02  # Lower threshold to show more connections
+confidence_threshold = 0.04  # Lower threshold to show more connections
 min_node_size = 15
 max_node_size = 60
 min_edge_width = 1
